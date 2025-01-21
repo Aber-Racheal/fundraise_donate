@@ -1,11 +1,11 @@
 <?php
-// Include the database connection
+// Include the database connection 
 include('php/config.php');
 
 // Get campaign ID from the request
 $campaign_id = isset($_GET['campaign_id']) ? (int) $_GET['campaign_id'] : 0;
 
-// Check if the campaign_id is valid
+// Check if the campaign_id is valid 
 if ($campaign_id <= 0) {
     echo json_encode([
         'error' => 'Invalid campaign ID'

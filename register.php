@@ -7,11 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Validate inputs
+    // Basic form validation
     if (empty($full_name) || empty($email) || empty($password) || empty($confirm_password)) {
         echo "All fields are required.";
     } elseif ($password !== $confirm_password) {
         echo "Passwords do not match.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format.";
+    } elseif (strlen($password) < 8) { // Check for password strength
+        echo "Password must be at least 8 characters long.";
     } else {
         // Check if email already exists
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
@@ -31,7 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Execute
             if ($stmt->execute()) {
-                echo "Registration successful.";
+                // Start the session after successful registration
+                $_SESSION['user_id'] = $stmt->insert_id;  // Save the user ID in the session
+                header('Location: verify.html');  // Redirect to the verification page
+                exit();
             } else {
                 echo "Error: " . $stmt->error;
             }
@@ -42,14 +49,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Process the signup (same as before)
-
-    // After successful signup
-    $_SESSION['user_id'] = $user_id;  // Save user ID in session to mark them as authenticated
-    header('Location: verify.html');  // Redirect to fundraise page
-    exit();
-}
 ?>

@@ -6,7 +6,7 @@ document.getElementById('donate-now"').addEventListener('click', () => {
     .then(response => {
         if (response.ok) {
             // User is logged in, redirect to donate.html
-            window.location.href = '/donate.html';
+            window.location.href = '/donate.php';
         } else {
             // User not logged in, redirect to signup page
             window.location.href = '/signup.html?redirect=donate.html';

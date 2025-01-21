@@ -27,8 +27,27 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="text-center">Verify Your Identity</h2>
-                <p class="text-center">To start a campaign, please upload your government-issued ID and supporting documents.</p>
+                <p class="text-center">To start a campaign, please provide correct information below</p>
                 <form id="verificationForm" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label for="govId" class="form-label">Full name</label>
+                        <input type="name" class="form-control" id="govId" placeholder="Your name should match that on the goverment issued ID" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="govId" class="form-label">Contact Number</label>
+                        <input type="email" class="form-control" id="govId"  required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="govId" class="form-label">Email</label>
+                        <input type="location" class="form-control" id="govId"  required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="govId" class="form-label">Location</label>
+                        <input type="email" class="form-control" id="govId"  required>
+                    </div>
                     <!-- Government ID Input -->
                     <div class="mb-3">
                         <label for="govId" class="form-label">Government-issued ID</label>
@@ -38,7 +57,7 @@
                     <!-- Supporting Documents Section -->
                     <div id="supportingDocsContainer">
                         <div class="file-input-group">
-                            <label for="supportingDocs" class="form-label">Supporting Document</label>
+                            <label for="supportingDocs" class="form-label">Supporting Document <span>(This can be your medical form, letter from local leaders, police, etc)</span></label>
                             <input type="file" class="form-control supporting-doc" accept=".jpg,.jpeg,.png,.pdf" required>
                             <span class="remove-file-btn" style="display:none;">Remove</span>
                         </div>

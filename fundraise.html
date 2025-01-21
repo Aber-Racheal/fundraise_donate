@@ -1,200 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Fundraising Campaign</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Body Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff; /* Set the background color to white */
-            color: #333; /* Set text color to dark gray for readability */
-            padding: 30px 0;
-            transition: background-color 0.3s ease;
-        }
+  <title>Help a Hand</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
-        /* Container Styles */
-        .container {
-            background-color: #28a745; /* Green background for the form */
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="css/animate.css">
+  
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
 
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+<style>  
         /* Heading Styles */
         h2 {
-            font-size: 36px;
-            font-weight: 700;
-            color: #fff; /* White color for the heading */
-            text-align: center;
-            margin-bottom: 20px;
+          font-size: 36px;
+          font-weight: 700;
+          color: black; /* White color for the heading */
+          text-align: center;
+          margin-bottom: 20px;
         }
-
+  
         p {
-            font-size: 18px;
-            color: #fff; /* White color for paragraph text */
-            text-align: center;
-            margin-bottom: 40px;
+          font-size: 18px;
+          color: black; /* White color for paragraph text */
+          text-align: center;
+          margin-bottom: 40px;
         }
-
+  
         /* Form Label Styles */
         .form-label {
-            font-size: 16px;
-            color: #fff; /* White color for the labels */
+          font-size: 16px;
+          font-weight: bold;
+          color: #28a745 /* White color for the labels */
         }
-
+  
         /* Form Control Styles */
         .form-control {
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            padding: 12px;
-            font-size: 16px;
-            transition: border 0.3s ease;
+          border-radius: 10px;
+          border: 1px solid #ccc;
+          padding: 12px;
+          font-size: 16px;
+          transition: border 0.3s ease;
         }
-
+  
         .form-control:focus {
-            border-color: #007bff; /* Border color on focus */
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+          border-color: #007bff; /* Border color on focus */
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
-
+  
         .d-grid {
-            margin-top: 20px;
+          margin-top: 20px;
         }
-
+  
         /* Button Styles */
         .btn-success {
-            background-color: #ffcc00; /* Set the button color to yellow */
-            border: none;
-            border-radius: 10px;
-            padding: 14px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+          background-color: #ffcc00; /* Set the button color to yellow */
+          border: none;
+          border-radius: 10px;
+          padding: 14px 20px;
+          font-size: 16px;
+          font-weight: 600;
+          transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
+  
         .btn-success:hover {
-            background-color: #ffb800; /* Darker yellow for hover effect */
-            transform: scale(1.05);
+          background-color: #ffb800; /* Darker yellow for hover effect */
+          transform: scale(1.05);
         }
-
+  
         /* Animation for container fade-in */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
-
+  
         /* File Input Styles */
         .form-control[type="file"] {
-            padding: 10px;
+          padding: 10px;
         }
-
+  
         /* Responsive Styles */
         @media (max-width: 767px) {
-            .container {
-                padding: 20px;
-            }
-
-            h2 {
-                font-size: 30px;
-            }
-
-            p {
-                font-size: 16px;
-            }
+          .container {
+            padding: 20px;
+          }
+  
+          h2 {
+            font-size: 30px;
+          }
+  
+          p {
+            font-size: 16px;
+          }
         }
-    </style>
+      
+  #start-fundraise{
+    background-color:  #ffc107;
+    border: solid 1px  #ffc107;
+  }
+</style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h2>Start a Fundraising Campaign</h2>
-                <p>Provide details about your campaign to get started.</p>
-                <form id="campaignForm" enctype="multipart/form-data" method="post">
-                    <div class="mb-3">
-                        <label for="profilePicture" class="form-label">CAMPAIGN PICTURE</label>
-                        <input type="file" class="form-control" id="profilePicture" accept=".jpg,.jpeg,.png" name="picture" required>
-                    </div>
+<html>
+  <div class="wrap">
+   <div class="container">
+    <div class="row">
+     <div class="col-md-6 d-flex align-items-center">
+      <p class="mb-0 phone pl-md-2">
+       <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span>+256 393249845</a> 
+       <a href="#"><span class="fa fa-paper-plane mr-1"></span>helpahand@email.com</a>
+     </p>
+   </div>
+   <div class="col-md-6 d-flex justify-content-md-end">
+    <div class="social-media">
+     <p class="mb-0 d-flex">
+      <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+      <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+      <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+      <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+ <div class="container">
+   <a class="navbar-brand" href="index.php">Help a Hand</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="oi oi-menu"></span> Menu
+   </button>
 
-                    <div class="mb-3">
-                        <label for="campaignTitle" class="form-label">CAMPAIGN TITLE</label>
-                        <textarea class="form-control" id="campaignDescription" rows="2" placeholder="Your campaign title" name="campaign_title" required></textarea>
-                    </div>
+   <div class="collapse navbar-collapse" id="ftco-nav">
+     <ul class="navbar-nav ml-auto">       
+       <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+       <li class="nav-item active cta"><a href="fundraise.html" class="nav-link">Fundraise</a></li> 
+       <li class="nav-item"><a href="index.php#donate-homepage" class="nav-link">Donate</a></li>
+       <li class="nav-item"><a href="causes.php" class="nav-link">Causes</a></li>
+       <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+       <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> 
+     </ul>
+   </div>
+ </div>
+</nav>
+<!-- END nav -->
 
-                    <div class="mb-3">
-                        <label for="campaignDescription" class="form-label">CAMPAIGN DESCRIPTION</label>
-                        <textarea class="form-control" id="campaignTitle" rows="4" placeholder="Describe your campaign" name="campaign_description" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="expectedAmount" class="form-label">EXPECTED AMOUNT ($)</label>
-                        <input type="number" class="form-control" id="expectedAmount" placeholder="Enter the amount you aim to raise" name="expected_amount" required>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-success">CREATE CAMPAIGN</button>
-                    </div>
-                </form>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-end">
+      <div class="col-md-9 ftco-animate pb-5">
+       <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.php">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Fundraise<i class="ion-ios-arrow-forward"></i></span></p>
+       <h1 class="mb-0 bread">Fundraise</h1>
+     </div>
+   </div>
+ </div>
+</section>
+
+    <div class="container mt-5" id="start-fundraise-section">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h2>Start a Fundraising Campaign</h2>
+          <p>Provide details about your campaign to get started.</p>
+          <form id="campaignForm" enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+              <label for="profilePicture" class="form-label"
+                >CAMPAIGN PICTURE</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="profilePicture"
+                accept=".jpg,.jpeg,.png"
+                name="picture"
+                required
+              />
             </div>
+
+            <div class="mb-3">
+              <label for="campaignTitle" class="form-label"
+                >CAMPAIGN TITLE</label
+              >
+              <input
+                class="form-control"
+                id="campaignDescription"
+                rows="2"
+                placeholder="Your campaign title"
+                name="campaign_title"
+                required
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="campaignDescription" class="form-label"
+                >CAMPAIGN DESCRIPTION</label
+              >
+              <textarea
+                class="form-control"
+                id="campaignTitle"
+                rows="4"
+                placeholder="Describe your campaign"
+                name="campaign_description"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="expectedAmount" class="form-label"
+                >EXPECTED AMOUNT ($)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="expectedAmount"
+                placeholder="Enter the amount you aim to raise"
+                name="expected_amount"
+                required
+              />
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success" style="margin-bottom: 30px;">
+                CREATE CAMPAIGN
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- Modal for Success Message -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h5 class="modal-title" id="successModalLabel">Campaign Created</h5> -->
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                </div>
-                <div class="modal-body">
-                    <p>Your fundraising campaign has been created successfully!</p>
-                </div>
-                <!-- <div class="modal-footer">
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="successModalLabel">Campaign Created</h5> -->
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body">
+            <p>Your fundraising campaign has been created successfully!</p>
+          </div>
+          <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                 </div> -->
-            </div>
         </div>
+      </div>
     </div>
 
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Help a Hand.</h2>
+            <p>
+              We provide a platform where anyone can create, manage, and promote
+              their fundraising campaigns at no cost.
+            </p>
+            <ul class="ftco-footer-social p-0">
+              <li class="ftco-animate">
+                <a
+                  href="#"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Twitter"
+                  ><span class="fa fa-twitter"></span
+                ></a>
+              </li>
+              <li class="ftco-animate">
+                <a
+                  href="#"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Facebook"
+                  ><span class="fa fa-facebook"></span
+                ></a>
+              </li>
+              <li class="ftco-animate">
+                <a
+                  href="#"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Instagram"
+                  ><span class="fa fa-instagram"></span
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+            <h2 class="footer-heading">Quick Links</h2>
+            <ul class="list-unstyled">
+              <li><a href="index.php" class="py-2 d-block">Home</a></li>
+              <li>
+                <a href="fundraise.html" class="py-2 d-block">Fundraise</a>
+              </li>
+              <li>
+                <a href="index.php#donate-homepage" class="py-2 d-block"
+                  >Donate</a
+                >
+              </li>
+              <li><a href="causes.php" class="py-2 d-block">Causes</a></li>
+              <li><a href="about.html" class="py-2 d-block">About</a></li>
+              <li><a href="contact.html" class="py-2 d-block">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Have a Questions?</h2>
+            <div class="block-23 mb-3">
+              <ul>
+                <li>
+                  <span class="icon fa fa-map"></span
+                  ><span class="text">
+                    Kakebe Technologies Head Office, Plot 43 Lira - Soroti Rd,
+                    Lira</span
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="icon fa fa-phone"></span
+                    ><span class="text">+256 393249845</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><span class="icon fa fa-paper-plane"></span
+                    ><span class="text"> info@kakebetech.com</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <a href="index.php #donate-homepage" class="btn btn-quarternary" id="donate-now"
+                >Donate Now</a
+              >
+            </p>
+            <p>
+              <a
+                href="fundraise.html"
+                class="btn btn-quarternary"
+                id="start-fundraise"
+                >start fundraise</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <p class="copyright">
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved | Help a Hand
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+    </svg></div>
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Event listener for form submission
-        document.getElementById('campaignForm').addEventListener('submit', function(event) {
-            // Prevent default form submission
-            event.preventDefault();
+      // Event listener for form submission
+      document
+        .getElementById("campaignForm")
+        .addEventListener("submit", function (event) {
+          // Prevent default form submission
+          event.preventDefault();
 
-            var formData = new FormData(this); // Create FormData object from the form
+          var formData = new FormData(this); // Create FormData object from the form
 
-            // AJAX request to submit the form data
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'fundraise.php', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText); // Parse the JSON response
-                    if (response.success) {
-                        // If success, show the success modal
-                        var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-                        myModal.show();
-                        // Optionally reset the form after success
-                        document.getElementById('campaignForm').reset();
-                    } else {
-                        alert('Error: ' + response.error); // Show any error message
-                    }
-                }
-            };
-            xhr.send(formData); // Send the form data using AJAX
+          // AJAX request to submit the form data
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "fundraise.php", true);
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              var response = JSON.parse(xhr.responseText); // Parse the JSON response
+              if (response.success) {
+                // If success, show the success modal
+                var myModal = new bootstrap.Modal(
+                  document.getElementById("successModal")
+                );
+                myModal.show();
+                // Optionally reset the form after success
+                document.getElementById("campaignForm").reset();
+              } else {
+                alert("Error: " + response.error); // Show any error message
+              }
+            }
+          };
+          xhr.send(formData); // Send the form data using AJAX
         });
     </script>
-</body>
+    <script src="js/index.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+  </body>
 </html>

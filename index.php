@@ -2,8 +2,11 @@
 // Include the database connection file
 include('php/config.php');
 
+// Set the number of items per page for the index page
+$itemsPerPage = 4;
+
 // Query to get all campaigns
-$sql = "SELECT * FROM campaigns ORDER BY created_at DESC"; // Ensure correct table name
+$sql = "SELECT * FROM campaigns ORDER BY created_at DESC LIMIT $itemsPerPage"; // Ensure correct table name
 $result = $conn->query($sql);
 
 // Check for database query errors
@@ -24,8 +27,6 @@ $conn->close();
 if (empty($campaigns)) {
 	echo "No campaigns available.";
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +39,8 @@ if (empty($campaigns)) {
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 
 	<link rel="stylesheet" href="css/animate.css">
 
@@ -64,6 +67,228 @@ if (empty($campaigns)) {
 		#start-fundraise-footer {
 			background-color: #ffc107;
 			border: #ffc107;
+		}
+
+
+		/* Ensure the cards have the same height */
+		.card {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			overflow: hidden;
+			transition: all 0.3s ease;
+		}
+
+		.card:hover {
+			box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+		}
+
+		/* Card Image */
+		.card .img {
+			height: 200px;
+			background-size: cover;
+			background-position: center;
+			margin-bottom: 15px;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		/* Card Text */
+		.card .text {
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 15px;
+		}
+
+		/* Description Scrollbar */
+		.card-description {
+			max-height: 100px;
+			/* Limiting the height */
+			overflow-y: auto;
+			/* Only show scrollbar when content overflows */
+			margin-bottom: 15px;
+			padding-right: 10px;
+			scrollbar-width: thin;
+			/* Thin scrollbar for Firefox */
+			scrollbar-color: #4CAF50 #f1f1f1;
+			/* Set a beautiful green color for Firefox */
+		}
+
+		/* For Webkit-based browsers (Chrome, Safari, etc.) */
+		.card-description::-webkit-scrollbar {
+			width: 8px;
+			/* Set width of the scrollbar */
+		}
+
+		.card-description::-webkit-scrollbar-track {
+			background-color: #f1f1f1;
+			/* Light color for the track */
+			border-radius: 10px;
+			/* Rounded corners for the track */
+		}
+
+		.card-description::-webkit-scrollbar-thumb {
+			background-color: #4CAF50;
+			/* Beautiful green thumb */
+			border-radius: 10px;
+			/* Rounded corners for the thumb */
+			border: 2px solid #f1f1f1;
+			/* Add border to make it feel like part of the track */
+		}
+
+		.card-description::-webkit-scrollbar-thumb:hover {
+			background-color: #45a049;
+			/* Darker thumb when hovered */
+		}
+
+		/* Hide scrollbar arrows */
+		.card-description::-webkit-scrollbar-button {
+			display: none;
+			/* Hide the up/down buttons */
+		}
+
+		/* Button Styling */
+		.card .btn {
+			margin-top: auto;
+			border: none;
+			color: black;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			border-radius: 25px;
+			transition: background-color 0.3s ease;
+		}
+
+		.card .btn:hover {
+			background-color: #e0a800;
+		}
+
+		/* General Styling for the section */
+		.ftco-section {
+			background-color: #f9f9f9;
+			/* Light background for the entire section */
+			padding: 50px 0;
+		}
+
+		.services {
+			background-color: #fff;
+			/* Default white background for each box */
+			border-radius: 10px;
+			/* Rounded corners for each box */
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			/* Soft shadow for depth */
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			/* Smooth hover transition */
+			padding: 30px;
+		}
+
+		.services:hover {
+			transform: translateY(-10px);
+			/* Slight lift on hover */
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+			/* Enhanced shadow on hover */
+		}
+
+		.services .icon {
+			border-radius: 50%;
+			width: 80px;
+			height: 80px;
+			margin-bottom: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			/* Icon color */
+			font-size: 40px;
+			transition: background-color 0.3s ease;
+		}
+
+		/* Corrected Color Styles for Each Box */
+		.bg-success {
+			background-color: #28a745;
+			/* Green background */
+		}
+
+		.bg-success .icon {
+			background-color: #218838;
+			/* Darker green for the icon */
+		}
+
+		.bg-warning {
+			background-color: #ffc107;
+			/* Yellow background */
+		}
+
+		.bg-warning .icon {
+			background-color: #e0a800;
+			/* Darker yellow for the icon */
+		}
+
+		.bg-danger {
+			background-color: #dc3545;
+			/* Red background */
+		}
+
+		.bg-danger .icon {
+			background-color: #c82333;
+			/* Darker red for the icon */
+		}
+
+		.bg-primary {
+			background-color: #007bff;
+			/* Blue background */
+		}
+
+		.bg-primary .icon {
+			background-color: #e0a800;
+			/* Darker blue for the icon */
+		}
+
+		.services h3 {
+			font-size: 22px;
+			font-weight: 600;
+			color: #fff;
+			/* White text color for headings */
+			margin-bottom: 15px;
+			line-height: 1.4;
+		}
+
+		.services p {
+			font-size: 14px;
+			color: #fff;
+			/* White text color for paragraphs */
+			line-height: 1.6;
+		}
+
+		/* Hover Effects on Boxes */
+		.services:hover h3,
+		.services:hover p {
+			color: #fff;
+			/* Keep the text white on hover */
+		}
+
+		/* Responsive Styles */
+		@media (max-width: 768px) {
+			.services {
+				padding: 20px;
+			}
+
+			.services .icon {
+				width: 70px;
+				height: 70px;
+			}
+
+			.services h3 {
+				font-size: 20px;
+			}
+
+			.services p {
+				font-size: 13px;
+			}
 		}
 	</style>
 </head>
@@ -94,16 +319,16 @@ if (empty($campaigns)) {
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Help a Hand</a>
+			<a class="navbar-brand" href="index.php">Help a Hand</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active cta"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item active cta"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="fundraise.html" class="nav-link">Fundraise</a></li>
-					<li class="nav-item"><a href="donate.php" class="nav-link">Donate</a></li>
+					<li class="nav-item"><a href="index.php#donate-homepage" class="nav-link">Donate</a></li>
 					<li class="nav-item"><a href="causes.php" class="nav-link">Causes</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
@@ -126,10 +351,10 @@ if (empty($campaigns)) {
 						<div class="col-md-10 col-lg-7 ftco-animate">
 							<div class="text w-100">
 								<h2>Help the poor in need</h2>
-								<h1 class="mb-3">Lend the helping hand get involved</h1>
+								<h1 class="mb-3">Lend a helping hand or get involved</h1>
 								<div class="d-flex meta">
 									<div class="">
-										<p class="mb-0"><a href="donate.html" class="btn btn-secondary py-3 px-2 px-md-4" id="donate-now">Donate Now</a></p>
+										<p class="mb-0"><a href="index.php#donate-homepage" class="btn btn-secondary py-3 px-2 px-md-4" id="donate-now">Donate Now</a></p>
 									</div>
 									<div class="">
 										<p class="mb-0"><a href="fundraise.html" class="btn btn-secondary py-3 px-2 px-md-4" id="start-fundraise">start Fundraise</a></p>
@@ -154,10 +379,10 @@ if (empty($campaigns)) {
 								<h1 class="mb-3">Discover Non-Profit Charity Platform</h1>
 								<div class="d-flex meta">
 									<div class="">
-										<p class="mb-0"><a href="#" class="btn btn-secondary py-3 px-2 px-md-4" id="donate-now">donate now</a></p>
+										<p class="mb-0"><a href="index.php#donate-homepage" class="btn btn-secondary py-3 px-2 px-md-4" id="donate-now">donate now</a></p>
 									</div>
 									<div class="">
-										<p class="mb-0"><a href="#" class="btn btn-secondary py-3 px-2 px-md-4" id="start-fundraise">start Fundraise</a></p>
+										<p class="mb-0"><a href="fundraise.html" class="btn btn-secondary py-3 px-2 px-md-4" id="start-fundraise">start Fundraise</a></p>
 									</div>
 
 								</div>
@@ -180,10 +405,10 @@ if (empty($campaigns)) {
 								<h1 class="mb-3">Giving Hope to the Hopeless People</h1>
 								<div class="d-flex meta">
 									<div class="">
-										<p class="mb-0"><a href="#" class="btn btn-secondary py-3 px-2 px-md-4" id="donate-now">donate now</a></p>
+										<p class="mb-0"><a href="index.php#donate-homepage" class="btn btn-secondary py-3 px-2 px-md-4" id="donate-now">donate now</a></p>
 									</div>
 									<div class="">
-										<p class="mb-0"><a href="#" class="btn btn-secondary py-3 px-2 px-md-4" id="start-fundraise">start fundraise</a></p>
+										<p class="mb-0"><a href="fundraise.html" class="btn btn-secondary py-3 px-2 px-md-4" id="start-fundraise">start fundraise</a></p>
 									</div>
 								</div>
 							</div>
@@ -195,10 +420,10 @@ if (empty($campaigns)) {
 	</section>
 
 	<section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img">
-		<div class="overlay"></div>
+		<!-- <div class="overlay"></div> -->
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5 order-md-last d-flex align-items-stretch">
+				<!-- <div class="col-md-5 order-md-last d-flex align-items-stretch">
 					<div class="donation-wrap">
 						<div class="total-donate d-flex align-items-center">
 							<span class="fa flaticon-cleaning"></span>
@@ -298,8 +523,8 @@ if (empty($campaigns)) {
 							</div>
 						</form>
 					</div>
-				</div>
-				<div class="col-md-7 wrap-about py-5">
+				</div> -->
+				<div class="row-md-7 wrap-about py-5">
 					<div class="heading-section pr-md-5 pt-md-5">
 						<span class="subheading">Welcome to Help a Hand</span>
 						<h2 class="mb-4">We are here to help everyone in need</h2>
@@ -311,41 +536,60 @@ if (empty($campaigns)) {
 		</div>
 	</section>
 
+
 	<section class="ftco-section ftco-no-pt ftco-no-pb">
 		<div class="container">
-			<div class="row no-gutters">
+			<div class="row no-gutters justify-content-center"> <!-- Add justify-content-center -->
 
+				<!-- First box (Start Donating) - Green -->
 				<div class="col-md-3 d-flex align-items-stretch">
-					<div class="services">
-						<div class="text text-center bg-tertiary">
-							<h3>Quick <br>Fundraising</h3>
-							<p>Start your campaign in minutes and rally support. Fundraise now and make a difference fast!</p>
+					<div class="services text-center p-4 bg-success text-light">
+						<div class="icon d-flex align-items-center justify-content-center mb-3">
+							<span class="fas fa-hand-holding-heart" style="font-size: 50px;"></span> <!-- Font Awesome icon -->
 						</div>
-						<div class="img border-3" style="background-image: url(images/services-2.jpg);">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-piggy-bank"></span>
-							</div>
-						</div>
+						<h3>Start <br>Donating</h3>
+						<p>Support a cause you believe in and help provide essential resources where they're needed most.</p>
 					</div>
 				</div>
+
+				<!-- Second box (Quick Fundraising) - Yellow -->
 				<div class="col-md-3 d-flex align-items-stretch">
-					<div class="services">
-						<div class="text text-center bg-primary">
-							<h3>Start <br>Donating</h3>
-							<p>Support a cause you believe in and help provide essential resources where they're needed most.</p>
+					<div class="services text-center p-4 bg-warning text-dark">
+						<div class="icon d-flex align-items-center justify-content-center mb-3">
+							<span class="fas fa-piggy-bank" style="font-size: 50px;"></span> <!-- Font Awesome icon -->
 						</div>
-						<div class="img border-1" style="background-image: url(images/services-3.jpg);">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-donation"></span>
-							</div>
-						</div>
+						<h3>Quick <br>Fundraising</h3>
+						<p>Start your campaign in minutes and rally support. Fundraise now and make a difference fast!</p>
 					</div>
 				</div>
+
+				<!-- Third box (Track Progress) - Red -->
+				<div class="col-md-3 d-flex align-items-stretch">
+					<div class="services text-center p-4 bg-danger text-light">
+						<div class="icon d-flex align-items-center justify-content-center mb-3">
+							<span class="fas fa-chart-line" style="font-size: 50px;"></span> <!-- Font Awesome icon -->
+						</div>
+						<h3>Track <br>Progress</h3>
+						<p>Monitor your campaign progress, set goals, and see the impact you're making.</p>
+					</div>
+				</div>
+
+				<!-- Fourth box (Join Community) - Blue -->
+				<div class="col-md-3 d-flex align-items-stretch">
+					<div class="services text-center p-4 bg-primary text-light">
+						<div class="icon d-flex align-items-center justify-content-center mb-3">
+							<span class="fas fa-users" style="font-size: 50px;"></span> <!-- Font Awesome icon -->
+						</div>
+						<h3>Join <br>Community</h3>
+						<p>Join a community of donors and make an impact together. Your contributions matter!</p>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</section>
 
-	<section class="ftco-section ftco-no-pb">
+	<section class="ftco-section ftco-no-pb" id="donate-homepage">
 		<div class="container">
 			<div class="row justify-content-center pb-5 mb-3">
 				<div class="col-md-7 heading-section text-center ftco-animate">
@@ -353,12 +597,12 @@ if (empty($campaigns)) {
 					<h2>Donate to charity causes around Uganda</h2>
 				</div>
 			</div>
-			<section class="ftco-section">
+			<section class="ftco-section" style="margin-top: -50px;">
 				<div class="container">
 					<div class="row">
 						<?php foreach ($campaigns as $campaign): ?>
 							<div class="col-md-6 col-lg-3">
-								<div class="causes causes-2 text-center ftco-animate">
+								<div class="causes causes-2 text-center ftco-animate card">
 									<?php
 									// Fetch the picture field (this will contain the image filename stored in the DB)
 									$imagePath = htmlspecialchars($campaign['picture']);
@@ -373,7 +617,7 @@ if (empty($campaigns)) {
 									<a href="#" class="img w-100" style="background-image: url('<?php echo $fullImagePath; ?>');"></a>
 									<div class="text p-3">
 										<h2><a href="#"><?php echo htmlspecialchars($campaign['campaign_title']); ?></a></h2>
-										<p><?php echo htmlspecialchars($campaign['campaign_description']); ?></p>
+										<p class="card-description"><?php echo htmlspecialchars($campaign['campaign_description']); ?></p>
 										<div class="goal mb-4">
 											<p><span id="amount-<?php echo $campaign['campaign_id']; ?>">$<?php echo number_format($campaign['expected_amount'], 2); ?></span> to go</p>
 											<div class="progress" style="height: 20px">
@@ -388,14 +632,23 @@ if (empty($campaigns)) {
 							</div>
 						<?php endforeach; ?>
 					</div>
+
+					<div class="text-center" style="margin-top: 30px;">
+						<a href="causes.php#campaigns" class="btn btn-primary mt-6">See More Campaigns</a>
+					</div>
 				</div>
+
 			</section>
+
+
 		</div>
-	</section>
-
-	<div class="overlay"></div>
 
 	</section>
+
+
+	<!-- <div class="overlay"></div>
+
+	</section> -->
 
 
 
@@ -410,7 +663,7 @@ if (empty($campaigns)) {
 					</div>
 				</div>
 				<div class="col-md-4 col-lg-4 d-flex align-items-center justify-content-end">
-					<p class="mb-0"><a href="donate.html" class="btn btn-primary py-3 px-4">Donate to a cause</a></p>
+					<p class="mb-0"><a href="index.php#donate-homepage" class="btn btn-primary py-3 px-4">Donate to a cause</a></p>
 				</div>
 			</div>
 		</div>
@@ -434,10 +687,13 @@ if (empty($campaigns)) {
 				<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
 					<h2 class="footer-heading">Quick Links</h2>
 					<ul class="list-unstyled">
-						<li><a href="index.html" class="py-2 d-block">Home</a></li>
-						<li><a href="fundraise.html" class="py-2 d-block">Fundraise</a></li>
-						<li><a href="donate.html" class="py-2 d-block">Donate</a></li>
+						<li><a href="index.php" class="py-2 d-block">Home</a></li>
+						<li><a href="fundraise.html #start-fundraise-section" class="py-2 d-block">Fundraise</a></li>
+						<li><a href="index.php#donate-homepage" class="py-2 d-block">Donate</a></li>
+						<li><a href="about.html" class="py-2 d-block">Causes</a></li>
 						<li><a href="about.html" class="py-2 d-block">About</a></li>
+						<li><a href="about.html" class="py-2 d-block">Contact</a></li>
+
 					</ul>
 				</div>
 				<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
@@ -453,8 +709,8 @@ if (empty($campaigns)) {
 
 
 				<div>
-					<p><a href="donate.html" class="btn btn-quarternary" id="donate-now">Donate Now</a></p>
-					<p><a href="fundraise.html" class="btn btn-quarternary" id="start-fundraise-footer">start fundraise</a></p>
+					<p><a href="index.php #donate-homepage" class="btn btn-quarternary" id="donate-now">Donate Now</a></p>
+					<p><a href="fundraise.html #start-fundraise-section" class="btn btn-quarternary" id="start-fundraise-footer">start fundraise</a></p>
 				</div>
 			</div>
 			<div class="row mt-5">
