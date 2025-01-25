@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Both fields are required.";
     } else {
         // Prepare and bind
-        $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
 
         // Execute

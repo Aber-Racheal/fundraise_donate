@@ -6,6 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $contact = $_POST['contact'];
+    $location = $_POST['location'];
+    $gov_id = $_POST['govId'];
+    $agreement = $_POST['agreement'];
+
+    $agreement = isset($_POST['agreement']) ? 'agreed' : 'disagreed'; 
+
 
     // Basic form validation
     if (empty($full_name) || empty($email) || empty($password) || empty($confirm_password)) {
@@ -18,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Password must be at least 8 characters long.";
     } else {
         // Check if email already exists
-        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
@@ -30,14 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Prepare and bind for inserting new user
-            $stmt = $conn->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $full_name, $email, $hashed_password);
+            $stmt = $conn->prepare("INSERT INTO users (full_name, email, password, contact_number, location, government_issued_id, agreement) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $full_name, $email, $hashed_password, $contact, $location, $gov_id, $agreement);
 
             // Execute
             if ($stmt->execute()) {
                 // Start the session after successful registration
                 $_SESSION['user_id'] = $stmt->insert_id;  // Save the user ID in the session
-                header('Location: verify.html');  // Redirect to the verification page
+                
+                header('Location: login.html');  // Redirect to the verification page
                 exit();
             } else {
                 echo "Error: " . $stmt->error;

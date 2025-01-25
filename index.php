@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 // Include the database connection file
 include('php/config.php');
 
@@ -290,6 +294,11 @@ if (empty($campaigns)) {
 				font-size: 13px;
 			}
 		}
+
+
+		.fundraise-account{
+			margin: auto;
+		}
 	</style>
 </head>
 
@@ -328,7 +337,7 @@ if (empty($campaigns)) {
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active cta"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="fundraise.html" class="nav-link">Fundraise</a></li>
-					<li class="nav-item"><a href="index.php#donate-homepage" class="nav-link">Donate</a></li>
+					<li class="nav-item"><a href="donate.php" class="nav-link">Donate</a></li>
 					<li class="nav-item"><a href="causes.php" class="nav-link">Causes</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
@@ -423,107 +432,6 @@ if (empty($campaigns)) {
 		<!-- <div class="overlay"></div> -->
 		<div class="container">
 			<div class="row">
-				<!-- <div class="col-md-5 order-md-last d-flex align-items-stretch">
-					<div class="donation-wrap">
-						<div class="total-donate d-flex align-items-center">
-							<span class="fa flaticon-cleaning"></span>
-							<h4>Donation Campaign <br>are running</h4>
-							<p class="d-flex align-items-center">
-								<span>$</span>
-								<span class="number" data-number="24781">0</span>
-							</p>
-						</div>
-						<form action="#" class="appointment">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="name">Full Name</label>
-										<div class="input-wrap">
-											<div class="icon"><span class="fa fa-user"></span></div>
-											<input type="text" class="form-control" placeholder="">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="name">Email Address</label>
-										<div class="input-wrap">
-											<div class="icon"><span class="fa fa-paper-plane"></span></div>
-											<input type="email" class="form-control" placeholder="">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="name">Select Causes</label>
-										<div class="form-field">
-											<div class="select-wrap">
-												<div class="icon"><span class="fa fa-chevron-down"></span></div>
-												<select name="" id="" class="form-control">
-													<option value=""></option>
-													<option value="">Child Support</option>
-													<option value="">Medical Support</option>
-													<option value="">Birthday</option>
-													<option value="">Tuition</option>
-													<option value="">Emergency</option>
-
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="name">Amount</label>
-										<div class="input-wrap">
-											<div class="icon"><span class="fa fa-money"></span></div>
-											<input type="text" class="form-control" placeholder="$5">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="name">Payment Method</label>
-										<div class="d-lg-flex">
-											<div class="form-radio mr-3">
-												<div class="radio">
-													<label>
-														<input type="radio" name="radio-input" checked>
-														<span class="checkmark"></span>
-														<span class="fill-control-description">Credit Card</span>
-													</label>
-												</div>
-											</div>
-											<div class="form-radio mr-3">
-												<div class="radio">
-													<label>
-														<input type="radio" name="radio-input">
-														<span class="checkmark"></span>
-														<span class="fill-control-description">Paypal</span>
-													</label>
-												</div>
-											</div>
-											<div class="form-radio">
-												<div class="radio">
-													<label>
-														<input type="radio" name="radio-input">
-														<span class="checkmark"></span>
-														<span class="fill-control-description">MTN Momo</span>
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="submit" value="Donate Now" class="btn btn-secondary py-3 px-4">
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div> -->
 				<div class="row-md-7 wrap-about py-5">
 					<div class="heading-section pr-md-5 pt-md-5">
 						<span class="subheading">Welcome to Help a Hand</span>
@@ -652,7 +560,11 @@ if (empty($campaigns)) {
 
 
 
-
+	<section>
+		<div>
+			<p class="fundraise-account">For one to start a fundraise, you need to<a href="">Create your fundraise account</a></p> 
+		</div>
+	</section>
 
 	<section class="ftco-hireme bg-secondary">
 		<div class="container">

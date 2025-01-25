@@ -1,12 +1,10 @@
 <?php
-session_start(); // Assuming you're using PHP sessions for authentication
+session_start();
 
-// Check if the user is authenticated
-if (isset($_SESSION['user_id'])) {
-    // User is authenticated
-    http_response_code(200);  // OK response
+// Check if user is logged in (you can check based on whatever session variable you are using)
+if (isset($_SESSION['full_name']) && !empty($_SESSION['full_name'])) {
+    echo "logged_in";
 } else {
-    // User is not authenticated
-    http_response_code(401);  // Unauthorized response
+    echo "not_logged_in";
 }
 ?>
